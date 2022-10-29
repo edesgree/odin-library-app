@@ -2,48 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Name</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="css/style.css">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <h1 class="title">
-        Bulma
-      </h1>
 
-      <p class="subtitle">
-        Modern CSS framework based on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Flexbox</a>
-      </p>
+  <main class="container">
+    <section class="hero is-small is-primary">
+      <div class="hero-body">
+        <p class="title">
+          Library
+        </p>
+        <p class="subtitle">
+          A little app to track the books you love!
+        </p>
+        <button class="button is-link">Add a book</button>
+      </div>
+    </section>
+    
+    
 
+
+    <div class="form">
       <div class="field">
+        <label class="label" for="title">Title</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Input">
+          <input class="input" name="title" type="text" placeholder="Book title">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="author">Author</label>
+        <div class="control">
+          <input class="input" name="author" type="text" placeholder="Book author">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="pages">Pages</label>
+        <div class="control">
+          <input class="input" name="pages" type="text" placeholder="Number of pages">
+        </div>
+      </div>
+      <div class="field">
+        <p class="strong">Have you read the book?</p>
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="isread">
+            Yes
+          </label>
+          <label class="radio">
+            <input type="radio" name="isread">
+            No
+          </label>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Add</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light">Cancel</button>
         </div>
       </div>
 
-      <div class="field">
-        <p class="control">
-          <span class="select">
-            <select>
-              <option>Select dropdown</option>
-            </select>
-          </span>
-        </p>
-      </div>
 
-      <div class="buttons">
-        <a class="button is-primary">Primary</a>
-        <a class="button is-link">Link</a>
+    </div>
+
+    <div class="books">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="https://placekitten.com/300/200" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">John Smith</p>
+              <p class="subtitle is-6">@johnsmith</p>
+            </div>
+          </div>
+      
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+            <a href="#">#css</a> <a href="#">#responsive</a>
+            <br>
+            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          </div>
+        </div>
       </div>
-    <footer class="footer">
-         © 2022 edesgree
-    </footer>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>© 2022 <a href="https://github.com/edesgree/" target="_blank">
+        <span class="icon-text">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+        <span>edesgree</span>
+      </span></a>  
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+  <footer class="footer">
+    
+  </footer>
 </body>
 
 </html>

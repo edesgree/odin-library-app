@@ -2,17 +2,7 @@
 $containerWidth: min(100% - 2rem, 60rem);
 $assetsPath: "../images/";
 
-$bright: #ffcb77;
-$bright2: #fe6d73;
-$main: #227c9d;
-$main2: #17c3b2;
-$light: #fef9ef;
-$dark: #323031;
-$greydark: #0c1e24;
-$greylight: #e2e8f0;
-$greylight2: #eff2f7;
-$font: "Open Sans", sans-serif;
-$border-radius: 5px;
+
 
 // Set your brand colors
 $purple: #8A4D76;
@@ -21,17 +11,21 @@ $brown: #757763;
 $beige-light: #D0D1CD;
 $beige-lighter: #EFF0EB;
 
+$bright: #ffcb77;
+$bright2: #fe6d73;
+$primary: $purple;
+$secondary: $pink;
+
 // Update Bulma's global variables
-$family-sans-serif: "Nunito", sans-serif;
-$grey-dark: $brown;
-$grey-light: $beige-light;
+$family-primary: "Nunito", sans-serif;
 $primary: $purple;
 $link: $pink;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
-
+$radius: 5px;
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
+$body-background-color: $beige-light;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
+
+
+
