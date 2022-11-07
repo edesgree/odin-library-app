@@ -20546,6 +20546,13 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+.books {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px 0;
+}
+
 .card .card-content .image .is-48X48 svg {
   height: 48px;
   width: 48px;
