@@ -20545,3 +20545,8 @@ body {
   color: hsl(0deg, 0%, 29%);
   font-family: "Nunito", sans-serif;
 }
+
+.card .card-content .image .is-48X48 svg {
+  height: 48px;
+  width: 48px;
+}
