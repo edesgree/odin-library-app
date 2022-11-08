@@ -26,27 +26,40 @@ const app = () => {
   }
 
   // examples
-  const book1 = new Book('The Hobbit', 'J.R.R Tolkien', 295, true);
-  const book2 = new Book('Harry Poter', 'J.K Rowling', 425, false);
-  const book3 = new Book('20000 lieues sous les mers', 'J. Verne', 400, true);
-  const book4 = new Book('l\'ile aux trésors', 'R. Stevenson', 540, false);
-  
+  const DEFAULT_DATA = [
+    { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true },
+    { title: 'Harry Poter', author: 'J.K Rowling', pages: 425, read: false },
+    { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true },
+    { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false }
+  ]
+
+
 
   // get books from local storage
-  if (localStorage.getItem('books') === null) {
-    collection = [book1, book2, book3, book4];
-    console.log("local storage empty, load demo collection")
-    console.log(localStorage.getItem('books'))
-  } else {
-    console.log("local storage NOT empty, load user collection")
-    console.log(localStorage.getItem('books'))
-    const storedBooks = JSON.parse(localStorage.getItem("books"));
-    
-    collection = storedBooks;
+  function loadCollection() {
+    if (localStorage.getItem('books') === null) {
+      collection = DEFAULT_DATA;
+      console.log("local storage empty, load demo collection")
+      console.log(localStorage.getItem('books'))
+    } else {
+      console.log("local storage NOT empty, load user collection")
+      console.log(localStorage.getItem('books'))
+      const storedBooks = JSON.parse(localStorage.getItem("books"));
+
+      collection = storedBooks;
+    }
   }
-    // display a book
-    function displayBook(item) {
-      return `
+
+  // display a book
+  function displayBook(item) {
+    let removeBtn = document.querySelector('.btn-delete');
+    console.log(removeBtn);
+    // removeBtn.addEventListener('click', () => {
+    //   collection.splice(collection.indexOf(item), 1);
+    //   setData()
+    //   displayCollection();
+    // });
+    return `
                 <div class="card">
          
                 <div class="card-content">
@@ -98,31 +111,28 @@ const app = () => {
                       </button>
                     </p>
                     <p class="control">
-                      <button class="button is-small is-danger">
+                      <button class="btn-delete button is-small is-danger">
                         Delete
                       </button>
                     </p>
                   </div>
                 </footer>
-              </div>`   
-    }
+              </div>`
+  }
   // display books
   function displayCollection() {
     // save to local storage
-    console.log(collection)
-    localStorage.setItem("books", JSON.stringify(collection));
+    setData();
     //console.log(storedBooks);
     for (let i = 0; i < collection.length; i++) {
-     
       books.innerHTML += displayBook(collection[i]);
-      console.log(collection[i].title)
     }
   }
-  displayCollection();
+
 
   function rand(max) {
     return Math.floor(Math.random() * (max + 1));
-  };
+  }
 
   function addBook() {
     const isRead = document.querySelector('input[name="isread"]:checked').value;
@@ -130,25 +140,19 @@ const app = () => {
     const bookAuthor = document.getElementById('bookAuthor').value;
     const bookPages = document.getElementById('bookPages').value;
 
-    console.log('addbook');
-
-    console.log("radioIsRead: " + isRead);
-
-
-    console.log("bookTitle: " + bookTitle);
-    console.log("bookAuthor: " + bookAuthor);
-    console.log("bookPages: " + bookPages);
     // create a new book using the Book constructor
     let newBook = new Book(bookTitle, bookAuthor, bookPages, isRead);
     // add new book to the collection array
     collection.push(newBook);
-    console.log(collection);
     // update local storage
-    localStorage.setItem("books", JSON.stringify(collection));
+    setData();
     // append the new book in the HTML book list
     books.innerHTML += displayBook(newBook);
   }
-
+  // set collection in local storage
+  function setData() {
+    localStorage.setItem("books", JSON.stringify(collection));
+  }
   // form submit
   addBookForm.addEventListener('submit', (e) => {
     // prevent defaut action
@@ -171,10 +175,11 @@ const app = () => {
     return false;
   }
 
+  loadCollection();
+  displayCollection();
 }
 
-//play app
-app();
+
 
 //modal support
 document.addEventListener('DOMContentLoaded', () => {
@@ -221,3 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+//play app
+app();
