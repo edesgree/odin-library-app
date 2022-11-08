@@ -1,22 +1,22 @@
 // app
 const app = () => {
-    const iconsBook = document.querySelectorAll(".icon-book .icon-book-cover");
-    const books = document.querySelector(".books");
-    //color random for each new book icon
-    iconsBook.forEach(icon => icon.setAttribute("style","fill-rule:evenodd;clip-rule:evenodd;fill:rgb("+rand(255)+", "+rand(255)+", "+rand(255)+")"));
+  const iconsBook = document.querySelectorAll(".icon-book .icon-book-cover");
+  const books = document.querySelector(".books");
+  //color random for each new book icon
+  iconsBook.forEach(icon => icon.setAttribute("style", "fill-rule:evenodd;clip-rule:evenodd;fill:rgb(" + rand(255) + ", " + rand(255) + ", " + rand(255) + ")"));
 
-    function Book(name, author, pages, read) {
-        this.name = name;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-        if (read == false) {
-            this.read = "not read yet"
-        } else {
-            this.read = "already read"
-        }
-        this.info = function () {
-            return `
+  function Book(name, author, pages, read) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    if (read == false) {
+      this.read = "not read yet"
+    } else {
+      this.read = "already read"
+    }
+    this.info = function () {
+      return `
             <div class="card">
      
             <div class="card-content">
@@ -75,37 +75,47 @@ const app = () => {
               </div>
             </footer>
           </div>`
-            
-        }
-    }
-    const book1 = new Book('The Hobbit', 'J.R.R Tolkien', 295, true);
-    const book2 = new Book('Harry Poter', 'J.K Rowling', 425, false);
-    const book3 = new Book('20000 lieues sous les mers', 'J. Verne', 400, true);
-    const book4 = new Book('l\'ile aux trésors', 'R. Stevenson', 540, false);
-    const collection = [book1,book2,book3,book4];
 
-    // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
-    
-
-    for (let i = 0; i < collection.length; i++) {
-       
-       books.innerHTML+=collection[i].info();
-       
-        
     }
-    
+  }
+  const book1 = new Book('The Hobbit', 'J.R.R Tolkien', 295, true);
+  const book2 = new Book('Harry Poter', 'J.K Rowling', 425, false);
+  const book3 = new Book('20000 lieues sous les mers', 'J. Verne', 400, true);
+  const book4 = new Book('l\'ile aux trésors', 'R. Stevenson', 540, false);
+  const collection = [book1, book2, book3, book4];
+
+  // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
+
+
+  for (let i = 0; i < collection.length; i++) {
+
+    books.innerHTML += collection[i].info();
+
+
+  }
+
 }
 function rand(max) {
-    return Math.floor(Math.random() * (max + 1));
+  return Math.floor(Math.random() * (max + 1));
 };
-function addBook(){
+function addBook() {
+
+  const isRead = document.querySelector('input[name="isread"]:checked').value;
+  const bookTitle = document.getElementById('bookTitle').value;
+  const bookAuthor = document.getElementById('bookAuthor').value;
+  const bookPages = document.getElementById('bookPages').value;
   
-  const choiceIsRead = document.querySelector('input[name="isread"]:checked').value;
   console.log('addbook');
-  console.log(choiceIsRead);
-  return choiceIsRead;
+
+  console.log("radioIsRead: " + isRead);
+
+
+  console.log("bookTitle: " + bookTitle);
+  console.log("bookAuthor: " + bookAuthor);
+  console.log("bookPages: " + bookPages);
+
 
 }
-console.log(addBook());
+
 //play app
 app();

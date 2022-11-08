@@ -34,30 +34,31 @@
       <div class="field">
         <label class="label" for="title">Title</label>
         <div class="control">
-          <input class="input" name="title" type="text" placeholder="Book title" required>
+          <input class="input" id="bookTitle" name="title" type="text" placeholder="Book title" required>
         </div>
       </div>
       <div class="field">
         <label class="label" for="author">Author</label>
         <div class="control">
-          <input class="input" name="author" type="text" placeholder="Book author" required>
+          <input class="input" id="bookAuthor" name="author" type="text" placeholder="Book author" required>
         </div>
       </div>
       <div class="field">
         <label class="label" for="pages">Pages</label>
         <div class="control">
-          <input class="input" name="pages" type="text" placeholder="Number of pages" pattern="^[0-9]+$" required>
+          <input class="input" id="bookPages" name="pages" type="number" placeholder="Number of pages"
+            pattern="^[0-9]+$" required>
         </div>
       </div>
       <div class="field">
         <p class="strong">Have you read the book?</p>
         <div class="control">
           <label class="radio">
-            <input type="radio" name="isread" value="1">
+            <input type="radio" name="isread" value="true">
             Yes
           </label>
           <label class="radio">
-            <input type="radio" name="isread" value="0">
+            <input type="radio" name="isread" value="false">
             No
           </label>
         </div>
@@ -75,7 +76,7 @@
     </div>
 
     <div class="books">
-      
+
     </div>
   </main>
   <footer class="footer">
