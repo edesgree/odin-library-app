@@ -113,9 +113,12 @@ const app = () => {
     console.log("bookTitle: " + bookTitle);
     console.log("bookAuthor: " + bookAuthor);
     console.log("bookPages: " + bookPages);
+    // create a new book using the Book constructor
     let newBook = new Book(bookTitle, bookAuthor, bookPages, isRead);
+    // add new book to the collection array
     collection.push(newBook);
     console.log(collection);
+    // append the new book in the HTML book list
     books.innerHTML += collection[collection.length - 1].info();
   }
 
@@ -123,9 +126,7 @@ const app = () => {
   addBookForm.addEventListener('submit', (e) => {
     // prevent defaut action
     e.preventDefault();
-    console.log("click submit");
     if (checkForm()) {
-      console.log("form ok")
       addBook();
     }
   })

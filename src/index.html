@@ -17,13 +17,28 @@
   <main class="container">
     <section class="hero is-small is-primary">
       <div class="hero-body">
-        <p class="title">
-          Library
-        </p>
-        <p class="subtitle">
-          A little app to track the books you have read!
-        </p>
-        <button class="button is-link js-modal-trigger" data-target="modal-addbook">Add a book</button>
+        <div class="media">
+          <div class="media-left">
+            <p class="image is-96x96">
+              <img src="images/library.png" alt="">
+            </p>
+          </div>
+          <div class="media-right">
+            <p class="title">
+              Library
+            </p>
+            <p class="subtitle">
+              A little app to track the books you have read!
+            </p>
+            <button class="button is-link js-modal-trigger" data-target="modal-addbook">
+              <span class="icon is-large">
+                <i class="fab fa-plus"></i>
+              </span>
+              <span>Add a book</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -56,7 +71,7 @@
             </div>
           </div>
           <div class="field">
-            <p class="strong">Have you read the book?</p>
+            <label class="label" >Have you read the book?</label>
             <div class="control">
               <label class="radio">
                 <input type="radio" name="isread" value="true" required>
@@ -99,4 +114,5 @@
     </div>
   </footer>
 </body>
+
 </html>
