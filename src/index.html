@@ -53,18 +53,18 @@
         <p class="strong">Have you read the book?</p>
         <div class="control">
           <label class="radio">
-            <input type="radio" name="isread">
+            <input type="radio" name="isread" value="1">
             Yes
           </label>
           <label class="radio">
-            <input type="radio" name="isread">
+            <input type="radio" name="isread" value="0">
             No
           </label>
         </div>
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link">Add</button>
+          <button class="button is-link" onclick="addBook()">Add book</button>
         </div>
         <div class="control">
           <button class="button is-link is-light">Cancel</button>

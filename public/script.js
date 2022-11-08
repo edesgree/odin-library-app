@@ -98,5 +98,14 @@ const app = () => {
 function rand(max) {
     return Math.floor(Math.random() * (max + 1));
 };
+function addBook(){
+  
+  const choiceIsRead = document.querySelector('input[name="isread"]:checked').value;
+  console.log('addbook');
+  console.log(choiceIsRead);
+  return choiceIsRead;
+
+}
+console.log(addBook());
 //play app
 app();
