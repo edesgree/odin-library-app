@@ -2,6 +2,8 @@
 const app = () => {
   const iconsBook = document.querySelectorAll(".icon-book .icon-book-cover");
   const books = document.querySelector(".books");
+  const addBookForm = document.getElementById('addBookForm');
+  console.log(addBookForm)
   //color random for each new book icon
   iconsBook.forEach(icon => icon.setAttribute("style", "fill-rule:evenodd;clip-rule:evenodd;fill:rgb(" + rand(255) + ", " + rand(255) + ", " + rand(255) + ")"));
 
@@ -93,27 +95,50 @@ const app = () => {
 
 
   }
+  function rand(max) {
+    return Math.floor(Math.random() * (max + 1));
+  };
+  function addBook() {
 
-}
-function rand(max) {
-  return Math.floor(Math.random() * (max + 1));
-};
-function addBook() {
+    const isRead = document.querySelector('input[name="isread"]:checked').value;
+    const bookTitle = document.getElementById('bookTitle').value;
+    const bookAuthor = document.getElementById('bookAuthor').value;
+    const bookPages = document.getElementById('bookPages').value;
+    
+    console.log('addbook');
 
-  const isRead = document.querySelector('input[name="isread"]:checked').value;
-  const bookTitle = document.getElementById('bookTitle').value;
-  const bookAuthor = document.getElementById('bookAuthor').value;
-  const bookPages = document.getElementById('bookPages').value;
-  
-  console.log('addbook');
-
-  console.log("radioIsRead: " + isRead);
+    console.log("radioIsRead: " + isRead);
 
 
-  console.log("bookTitle: " + bookTitle);
-  console.log("bookAuthor: " + bookAuthor);
-  console.log("bookPages: " + bookPages);
+    console.log("bookTitle: " + bookTitle);
+    console.log("bookAuthor: " + bookAuthor);
+    console.log("bookPages: " + bookPages);
 
+
+  }
+
+  // form submit
+  addBookForm.addEventListener('submit', (e) => {
+    // prevent defaut action
+    e.preventDefault();
+    console.log("click submit");
+    if (checkForm()) {
+      console.log("form ok")
+      addBook();
+    }
+  })
+  //check validity form
+  function checkForm() {
+    console.log("checkForm")
+    let invalid_fields = document.querySelectorAll("form :invalid");
+    console.log("invalid_fields"+invalid_fields.length)
+    if (invalid_fields.length == 0) {
+      // form valid
+      console.log("form valid");
+      return true;
+    }
+    return false
+  }
 
 }
 
