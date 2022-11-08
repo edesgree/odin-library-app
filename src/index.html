@@ -23,57 +23,71 @@
         <p class="subtitle">
           A little app to track the books you love!
         </p>
-        <button class="button is-link">Add a book</button>
+        <button class="button is-link js-modal-trigger" data-target="modal-addbook">Add a book</button>
       </div>
     </section>
 
+    <!-- Modal -->
+    <div id="modal-addbook" class="modal">
+      <div class="modal-background"></div>
+      <form class="modal-card form" id="addBookForm">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Modal title</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+
+          <div class="field">
+            <label class="label" for="title">Title</label>
+            <div class="control">
+              <input class="input" id="bookTitle" name="title" type="text" placeholder="Book title" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="author">Author</label>
+            <div class="control">
+              <input class="input" id="bookAuthor" name="author" type="text" placeholder="Book author" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="pages">Pages</label>
+            <div class="control">
+              <input class="input" id="bookPages" name="pages" type="number" placeholder="Number of pages"
+                pattern="^[0-9]+$" required>
+            </div>
+          </div>
+          <div class="field">
+            <p class="strong">Have you read the book?</p>
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="isread" value="true" required>
+                Yes
+              </label>
+              <label class="radio">
+                <input type="radio" name="isread" value="false">
+                No
+              </label>
+            </div>
+          </div>
+
+
+        </section>
+        <footer class="modal-card-foot">
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" class="button is-link">Add book</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light" type="reset">Reset</button>
+            </div>
+          </div>
+        </footer>
+      </form>
+    </div>
+    <!--  -->
 
 
 
-    <form class="form" id="addBookForm">
-      <div class="field">
-        <label class="label" for="title">Title</label>
-        <div class="control">
-          <input class="input" id="bookTitle" name="title" type="text" placeholder="Book title" required>
-        </div>
-      </div>
-      <div class="field">
-        <label class="label" for="author">Author</label>
-        <div class="control">
-          <input class="input" id="bookAuthor" name="author" type="text" placeholder="Book author" required>
-        </div>
-      </div>
-      <div class="field">
-        <label class="label" for="pages">Pages</label>
-        <div class="control">
-          <input class="input" id="bookPages" name="pages" type="number" placeholder="Number of pages"
-            pattern="^[0-9]+$" required>
-        </div>
-      </div>
-      <div class="field">
-        <p class="strong">Have you read the book?</p>
-        <div class="control">
-          <label class="radio">
-            <input type="radio" name="isread" value="true" required>
-            Yes
-          </label>
-          <label class="radio">
-            <input type="radio" name="isread" value="false">
-            No
-          </label>
-        </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button type="submit" class="button is-link" >Add book</button>
-        </div>
-        <div class="control">
-          <button class="button is-link is-light" type="reset">Reset</button>
-        </div>
-      </div>
-
-
-    </form>
 
     <div class="books">
 
@@ -90,9 +104,6 @@
           </span></a>
       </p>
     </div>
-  </footer>
-  <footer class="footer">
-
   </footer>
 </body>
 

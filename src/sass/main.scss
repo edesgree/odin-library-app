@@ -34,3 +34,14 @@ body {
 // input:valid{
 //     border:solid 2px green;
 // }
+
+// modal
+.modal-card-head{
+    background-color: $purple;
+    .modal-card-title{
+        color:$white;
+    } 
+}
+.modal-card-body{
+    background-color: $beige-lighter;
+}

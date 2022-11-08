@@ -20562,3 +20562,14 @@ body {
   height: 48px;
   width: 48px;
 }
+
+.modal-card-head {
+  background-color: #8A4D76;
+}
+.modal-card-head .modal-card-title {
+  color: hsl(0deg, 0%, 100%);
+}
+
+.modal-card-body {
+  background-color: #EFF0EB;
+}
