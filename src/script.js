@@ -88,7 +88,7 @@ const app = () => {
 
   // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
 
-
+  // display books
   for (let i = 0; i < collection.length; i++) {
 
     books.innerHTML += collection[i].info();
@@ -104,7 +104,7 @@ const app = () => {
     const bookTitle = document.getElementById('bookTitle').value;
     const bookAuthor = document.getElementById('bookAuthor').value;
     const bookPages = document.getElementById('bookPages').value;
-    
+
     console.log('addbook');
 
     console.log("radioIsRead: " + isRead);
@@ -113,8 +113,10 @@ const app = () => {
     console.log("bookTitle: " + bookTitle);
     console.log("bookAuthor: " + bookAuthor);
     console.log("bookPages: " + bookPages);
-
-
+    let newBook = new Book(bookTitle, bookAuthor, bookPages, isRead);
+    collection.push(newBook);
+    console.log(collection);
+    books.innerHTML += collection[collection.length - 1].info();
   }
 
   // form submit
@@ -131,7 +133,7 @@ const app = () => {
   function checkForm() {
     console.log("checkForm")
     let invalid_fields = document.querySelectorAll("form :invalid");
-    console.log("invalid_fields"+invalid_fields.length)
+    console.log("invalid_fields" + invalid_fields.length)
     if (invalid_fields.length == 0) {
       // form valid
       console.log("form valid");
