@@ -20562,14 +20562,21 @@ body {
   height: 48px;
   width: 48px;
 }
+.card .card-content .media-content {
+  overflow: unset;
+}
 
-.modal-card-head {
+@media screen and (min-width: tablet) {
+  .modal-card {
+    width: 300px;
+  }
+}
+.modal-card .modal-card-head {
   background-color: #8A4D76;
 }
-.modal-card-head .modal-card-title {
+.modal-card .modal-card-head .modal-card-title {
   color: hsl(0deg, 0%, 100%);
 }
-
-.modal-card-body {
+.modal-card .modal-card-body {
   background-color: #EFF0EB;
 }
