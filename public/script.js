@@ -11,12 +11,13 @@ const app = () => {
 
 
   class Book {
-    constructor(title, author, pages, read, iconColor) {
+    constructor(title, author, pages, read) {
       this.title = title;
       this.author = author;
       this.pages = pages;
       this.read = read;
-      this.icon = iconColor;
+      // random icon color for each book
+      this.iconColor = [rand(255), rand(255), rand(255)];
       if (read == false) {
         this.read = "not read yet"
       } else {
@@ -27,10 +28,10 @@ const app = () => {
 
   // examples
   const DEFAULT_DATA = [
-    { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true },
-    { title: 'Harry Poter', author: 'J.K Rowling', pages: 425, read: false },
-    { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true },
-    { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false }
+    { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true,iconColor:[123,123,123] },
+    { title: 'Harry Poter', author: 'J.K Rowling', pages: 425, read: false,iconColor:[23,255,66] },
+    { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true,iconColor:[87,123,87] },
+    { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false,iconColor:[123,14,0] }
   ]
 
 
@@ -52,14 +53,16 @@ const app = () => {
 
   // display a book
   function displayBook(item) {
-    let removeBtn = document.querySelector('.btn-delete');
-    console.log(removeBtn);
+   // let removeBtn = document.item.querySelector('.btn-delete');
+    console.log(item);
+    //console.log(removeBtn);
     // removeBtn.addEventListener('click', () => {
     //   collection.splice(collection.indexOf(item), 1);
     //   setData()
     //   displayCollection();
-    // });
-    return `
+    // }); 
+    const bookDiv = document.createElement('div');
+    const html= `
                 <div class="card">
          
                 <div class="card-content">
@@ -76,7 +79,7 @@ const app = () => {
                               class="icon-bg" style="fill-rule:evenodd;clip-rule:evenodd;fill:#EFF0EB;" />
                             <path class="icon-book-cover"
                               d="M162.709,118.858h193.736l44.16,193.987h-16.308l-0.399,68.771   h16.707v11.528H138.449c-25.064-1.989-22.68-46.107-23.872-58.038l21.887-197.172C136.464,129.192,145.604,118.858,162.709,118.858   L162.709,118.858z"
-                              style="fill-rule:evenodd;clip-rule:evenodd;fill:rgb(${rand(255)}, ${rand(255)}, ${rand(255)})" />
+                              style="fill-rule:evenodd;clip-rule:evenodd;fill:rgb(${item.iconColor[0]}, ${item.iconColor[1]}, ${item.iconColor[2]})" />
                             <path
                               d="M162.709,118.858h18.313L164.3,393.146h-25.851   c-30.628-3.583-31.422-51.679-21.886-77.916l19.9-177.294C136.464,129.192,145.604,118.858,162.709,118.858L162.709,118.858z"
                               style="fill-rule:evenodd;clip-rule:evenodd;fill:#324A5E;" />
@@ -118,6 +121,9 @@ const app = () => {
                   </div>
                 </footer>
               </div>`
+              const titleBook =  document.createElement('div');
+              titleBook.textContent = item.title;
+              bookDiv.appendChild(titleBook);
   }
   // display books
   function displayCollection() {
