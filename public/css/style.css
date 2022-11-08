@@ -20553,6 +20553,11 @@ body {
   padding: 20px 0;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .card .card-content .image .is-48X48 svg {
   height: 48px;
   width: 48px;

@@ -12,6 +12,9 @@ body {
     padding: 20px 0;
 }
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .card-content {
         .image {
             .is-48X48 {
