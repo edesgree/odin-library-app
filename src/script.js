@@ -18,14 +18,14 @@ const app = () => {
       this.read = read;
       // random icon color for each book
       this.iconColor = iconColor;
-      
+
     }
   }
 
   // examples
   const DEFAULT_DATA = [
     { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true, iconColor: [123, 123, 123] },
-    { title: 'Harry Poter', author: 'J.K Rowling', pages: 425, read: false, iconColor: [23, 255, 66] },
+    { title: 'Harry Potter', author: 'J.K Rowling', pages: 425, read: false, iconColor: [23, 255, 66] },
     { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true, iconColor: [87, 123, 87] },
     { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false, iconColor: [123, 14, 0] }
   ]
@@ -49,7 +49,6 @@ const app = () => {
 
   // display a book
   function displayBook(item) {
-    console.log('item', item)
     const htmlCard = `
                 <div class="card-content">
                   <div class="media">
@@ -84,51 +83,46 @@ const app = () => {
                       <p class="subtitle is-6">${item.author}</p>
                     </div>
                   </div>
-         
                   <div class="content">
                     ${item.pages} pages<br>${item.read}.
-                    <div class="field">
-                      <input id="isread" type="checkbox" name="isread" class="switch is-rounded is-small"  ${
-                        item.read ? 'checked' : 'unchecked'}>
-                      <label for="isread">${item.read ? 'already read it' : 'not read yet'}</label>
-                    </div>
                   </div>
-                  
-                </div>
-                <footer class="card-footer">
-                  <div class="field is-grouped">
-                    <p class="control">
-                      <button class="button is-small ">
-                        Edit
-                      </button>
-                    </p>
-                    <p class="control">
-                      <button class="btn-delete button is-small is-danger">
-                        Delete
-                      </button>
-                    </p>
-                  </div>
-                </footer>`;
+                </div>`;
     const bookCard = document.createElement('div');
+    const bookCardFooter = document.createElement('footer');
     const removeBtn = document.createElement('button');
+    const isReadDiv = document.createElement('div');
+    //const removeBtn = document.querySelector('.btn-delete');
     bookCard.classList.add('card');
-    bookCard.setAttribute('id',`book-${collection.indexOf(item)}`);
-    bookCard.innerHTML = htmlCard;
-    
+    bookCard.setAttribute('id', `book-${collection.indexOf(item)}`);
+    bookCardFooter.classList.add('card-footer');
+    isReadDiv.classList.add('card-footer-isread');
 
-    removeBtn.classList.add('removeBtn') ;
-    removeBtn.textContent = 'remove';   
-    bookCard.appendChild(removeBtn);
+    removeBtn.classList.add('btn-delete', 'button', 'is-small', 'is-danger');
+    removeBtn.innerHTML = `<span class="icon is-small">
+                            <i class="fa-solid fa-trash"></i>
+                          </span>`;
+    isReadDiv.innerHTML = `
+                          <input id="isread" type="checkbox" name="isread" class="switch is-rounded is-small"  ${item.read ? 'checked' : 'unchecked'}>
+                          <label for="isread">${item.read ? 'already read it' : 'not read yet'}</label>
+                          `;
+    bookCard.innerHTML = htmlCard;
+    bookCard.appendChild(bookCardFooter);
+    bookCardFooter.appendChild(isReadDiv);
+    bookCardFooter.appendChild(removeBtn);
+
+
+
+
     booksGrid.appendChild(bookCard);
     //add toggle ability to each book 'read' button on click
-    removeBtn.addEventListener('click', () => { 
+    removeBtn.addEventListener('click', () => {
       removeBook(collection.indexOf(item));
-      console.log('remove' )
-  }); 
+      console.log('remove')
+    });
     // const titleBook = document.createElement('p');
     // titleBook.textContent = `"${item.title}"`;
     // console.log(bookCard);
-    
+
     //bookCard.appendChild(titleBook + "!");
     // console.log("titlebook" + titleBook);
     // let removeBtn = document.querySelector('.btn-delete');
@@ -141,26 +135,25 @@ const app = () => {
     //    removeBook(item);
     //  }); 
     //add toggle ability to each book 'read' button on click
-    //  let readBtn = document.querySelector(`card#book-${collection.indexOf(item)} #isread`);
-    //  console.log('readBtn', readBtn);
-    //  readBtn.addEventListener('change', () => {
-    //    item.isread = !item.isread;
-    //    setData();
-    //    //render();
-    //  });
-    
-   // return html
+      let readBtn = isReadDiv.getElementsByClassName('switch')[0];
+      console.log('readBtn', readBtn.checked);
+      readBtn.addEventListener('change', () => {
+        console.log('readBtn change');
+        item.read = !item.read;
+        console.log('item.isread', item.read)
+        
+        setData();
+        console.log('item.isread', item)
+        //displayCollection()
+      });
+
+    // return html
   }
   // display books
   function displayCollection() {
     resetGrid();
-    // save to local storage
-    setData();
-    console.log('collection.length', collection.length);
     for (let i = 0; i < collection.length; i++) {
-      //booksGrid.innerHTML += displayBook(collection[i]);
       displayBook(collection[i]);
-      console.log('collection[i]', collection[i])
     }
   }
   function resetGrid() {

@@ -10258,6 +10258,28 @@ readers do not read off random characters that represent icons */
   content: "\f3f6";
 }
 
+/*!
+ * Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2022 Fonticons, Inc.
+ */
+:root, :host {
+  --fa-style-family-classic: "Font Awesome 6 Free";
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.ttf") format("truetype");
+}
+.fas,
+.fa-solid {
+  font-weight: 900;
+}
+
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .pagination-previous,
@@ -21332,6 +21354,19 @@ body {
 }
 .card .card-content .media-content {
   overflow: unset;
+}
+.card .card-footer {
+  justify-content: space-between;
+}
+.card .card-footer .card-footer-isread {
+  padding-left: 5px;
+}
+.card .card-footer .card-footer-isread .switch[type=checkbox] {
+  display: inline-block;
+  opacity: 1;
+  outline: 0;
+  position: relative;
+  user-select: none;
 }
 
 @media screen and (min-width: tablet) {
