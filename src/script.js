@@ -6,7 +6,7 @@ const app = () => {
   let collection = [];
   console.log(addBookForm)
   //color random for each new book icon
-  iconsBook.forEach(icon => icon.setAttribute("style", "fill-rule:evenodd;clip-rule:evenodd;fill:rgb(" + rand(255) + ", " + rand(255) + ", " + rand(255) + ")"));
+  //iconsBook.forEach(icon => icon.setAttribute("style", "fill-rule:evenodd;clip-rule:evenodd;fill:rgb(" + rand(255) + ", " + rand(255) + ", " + rand(255) + ")"));
 
 
 
@@ -18,11 +18,7 @@ const app = () => {
       this.read = read;
       // random icon color for each book
       this.iconColor = iconColor;
-      if (read == false) {
-        this.read = "not read yet"
-      } else {
-        this.read = "already read"
-      }
+      
     }
   }
 
@@ -53,11 +49,8 @@ const app = () => {
 
   // display a book
   function displayBook(item) {
-     
-    const bookCard = document.createElement('div');
-    const html = `
-                <div class="card">
-         
+    console.log('item', item)
+    const htmlCard = `
                 <div class="card-content">
                   <div class="media">
                     <div class="media-left">
@@ -93,14 +86,17 @@ const app = () => {
                   </div>
          
                   <div class="content">
-                  ${item.pages} pages<br>
-                  ${item.read}.
+                    ${item.pages} pages<br>${item.read}.
+                    <div class="field">
+                      <input id="isread" type="checkbox" name="isread" class="switch is-rounded is-small"  ${
+                        item.read ? 'checked' : 'unchecked'}>
+                      <label for="isread">${item.read ? 'already read it' : 'not read yet'}</label>
+                    </div>
                   </div>
                   
                 </div>
                 <footer class="card-footer">
                   <div class="field is-grouped">
-                  
                     <p class="control">
                       <button class="button is-small ">
                         Edit
@@ -112,12 +108,27 @@ const app = () => {
                       </button>
                     </p>
                   </div>
-                </footer>
-              </div>`
+                </footer>`;
+    const bookCard = document.createElement('div');
+    const removeBtn = document.createElement('button');
+    bookCard.classList.add('card');
+    bookCard.setAttribute('id',`book-${collection.indexOf(item)}`);
+    bookCard.innerHTML = htmlCard;
+    
+
+    removeBtn.classList.add('removeBtn') ;
+    removeBtn.textContent = 'remove';   
+    bookCard.appendChild(removeBtn);
+    booksGrid.appendChild(bookCard);
+    //add toggle ability to each book 'read' button on click
+    removeBtn.addEventListener('click', () => { 
+      removeBook(collection.indexOf(item));
+      console.log('remove' )
+  }); 
     // const titleBook = document.createElement('p');
     // titleBook.textContent = `"${item.title}"`;
     // console.log(bookCard);
-    booksGrid.innerHTML = html;
+    
     //bookCard.appendChild(titleBook + "!");
     // console.log("titlebook" + titleBook);
     // let removeBtn = document.querySelector('.btn-delete');
@@ -129,7 +140,16 @@ const app = () => {
 
     //    removeBook(item);
     //  }); 
-    return html
+    //add toggle ability to each book 'read' button on click
+    //  let readBtn = document.querySelector(`card#book-${collection.indexOf(item)} #isread`);
+    //  console.log('readBtn', readBtn);
+    //  readBtn.addEventListener('change', () => {
+    //    item.isread = !item.isread;
+    //    setData();
+    //    //render();
+    //  });
+    
+   // return html
   }
   // display books
   function displayCollection() {
@@ -138,42 +158,45 @@ const app = () => {
     setData();
     console.log('collection.length', collection.length);
     for (let i = 0; i < collection.length; i++) {
-      booksGrid.innerHTML += displayBook(collection[i]);
-      console.log(collection[i]);
+      //booksGrid.innerHTML += displayBook(collection[i]);
+      displayBook(collection[i]);
+      console.log('collection[i]', collection[i])
     }
   }
   function resetGrid() {
 
-    console.log('resetGrid' );
+    console.log('resetGrid');
     booksGrid.innerHTML = "";
   }
 
   function rand(max) {
     return Math.floor(Math.random() * (max + 1));
   }
-function randomRGB(){
-  return [rand(255), rand(255), rand(255)]
-}
+  function randomRGB() {
+    return [rand(255), rand(255), rand(255)]
+  }
   function addBook() {
-    const inputIsRead = document.querySelector('input[name="isread"]:checked').value;
+    const inputIsRead = document.querySelector('input[name="isread"]').checked;
+    console.log('inputIsRead', inputIsRead)
     const inputBookTitle = document.getElementById('bookTitle').value;
     const inputBookAuthor = document.getElementById('bookAuthor').value;
     const inputBookPages = document.getElementById('bookPages').value;
     const inputIconColor = randomRGB();
 
     // create a new book using the Book constructor
-    let newBook = new Book(inputBookTitle, inputBookAuthor, inputBookPages, inputIsRead,inputIconColor);
+    let newBook = new Book(inputBookTitle, inputBookAuthor, inputBookPages, inputIsRead, inputIconColor);
+    console.log('newBook', newBook)
     // add new book to the collection array
     collection.push(newBook);
     // update local storage
     setData();
     // append the new book in the HTML book list
-    booksGrid.innerHTML += displayBook(newBook);
+    displayBook(newBook);
   }
   const removeBook = (index) => {
     collection.splice(index, 1)
     displayCollection();
-    
+
   }
   // set collection in local storage
   function setData() {
