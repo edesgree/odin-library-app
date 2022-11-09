@@ -1,14 +1,8 @@
 // app
 const app = () => {
-  const iconsBook = document.querySelectorAll(".icon-book .icon-book-cover");
   const booksGrid = document.getElementById("booksGrid");
   const addBookForm = document.getElementById('addBookForm');
   let collection = [];
-  console.log(addBookForm)
-  //color random for each new book icon
-  //iconsBook.forEach(icon => icon.setAttribute("style", "fill-rule:evenodd;clip-rule:evenodd;fill:rgb(" + rand(255) + ", " + rand(255) + ", " + rand(255) + ")"));
-
-
 
   class Book {
     constructor(title, author, pages, read, iconColor) {
@@ -18,7 +12,6 @@ const app = () => {
       this.read = read;
       // random icon color for each book
       this.iconColor = iconColor;
-
     }
   }
 
@@ -32,17 +25,12 @@ const app = () => {
 
 
 
-  // get books from local storage
+  // get books from local storage (display demo books if storage is empty)
   function loadCollection() {
     if (localStorage.getItem('books') === null) {
       collection = DEFAULT_DATA;
-      console.log("local storage empty, load demo collection")
-      console.log(localStorage.getItem('books'))
     } else {
-      console.log("local storage NOT empty, load user collection")
-      console.log(localStorage.getItem('books'))
       const storedBooks = JSON.parse(localStorage.getItem("books"));
-
       collection = storedBooks;
     }
   }
@@ -91,7 +79,7 @@ const app = () => {
     const bookCardFooter = document.createElement('footer');
     const removeBtn = document.createElement('button');
     const isReadDiv = document.createElement('div');
-    //const removeBtn = document.querySelector('.btn-delete');
+
     bookCard.classList.add('card');
     bookCard.setAttribute('id', `book-${collection.indexOf(item)}`);
     bookCardFooter.classList.add('card-footer');
@@ -109,56 +97,33 @@ const app = () => {
     bookCard.appendChild(bookCardFooter);
     bookCardFooter.appendChild(isReadDiv);
     bookCardFooter.appendChild(removeBtn);
-
-
-
-
+    // populate the grid with the new book
     booksGrid.appendChild(bookCard);
-    //add toggle ability to each book 'read' button on click
+
+    //add remove button
     removeBtn.addEventListener('click', () => {
       removeBook(collection.indexOf(item));
-      console.log('remove')
     });
-    // const titleBook = document.createElement('p');
-    // titleBook.textContent = `"${item.title}"`;
-    // console.log(bookCard);
 
-    //bookCard.appendChild(titleBook + "!");
-    // console.log("titlebook" + titleBook);
-    // let removeBtn = document.querySelector('.btn-delete');
-    // console.log('removeBtn', removeBtn)
-    // console.log(item);
-    // //console.log(removeBtn);
-    //  removeBtn.addEventListener('click', () => {
-    //   console.log('removeBtn');
-
-    //    removeBook(item);
-    //  }); 
     //add toggle ability to each book 'read' button on click
-      let readBtn = isReadDiv.getElementsByClassName('switch')[0];
-      console.log('readBtn', readBtn.checked);
-      readBtn.addEventListener('change', () => {
-        console.log('readBtn change');
-        item.read = !item.read;
-        console.log('item.isread', item.read)
-        
-        setData();
-        console.log('item.isread', item)
-        //displayCollection()
-      });
-
-    // return html
+    // get the input checkbox
+    let readBtn = isReadDiv.getElementsByClassName('switch')[0];
+    readBtn.addEventListener('change', () => {
+      item.read = !item.read;
+      setData();
+    });
   }
+
   // display books
   function displayCollection() {
     resetGrid();
+    // display each book in the collection
     for (let i = 0; i < collection.length; i++) {
       displayBook(collection[i]);
     }
   }
-  function resetGrid() {
 
-    console.log('resetGrid');
+  function resetGrid() {
     booksGrid.innerHTML = "";
   }
 
@@ -169,16 +134,16 @@ const app = () => {
     return [rand(255), rand(255), rand(255)]
   }
   function addBook() {
-    const inputIsRead = document.querySelector('input[name="isread"]').checked;
-    console.log('inputIsRead', inputIsRead)
+   
     const inputBookTitle = document.getElementById('bookTitle').value;
     const inputBookAuthor = document.getElementById('bookAuthor').value;
     const inputBookPages = document.getElementById('bookPages').value;
+    const inputIsRead = document.querySelector('input[name="isread"]').checked;
     const inputIconColor = randomRGB();
-
+    
     // create a new book using the Book constructor
     let newBook = new Book(inputBookTitle, inputBookAuthor, inputBookPages, inputIsRead, inputIconColor);
-    console.log('newBook', newBook)
+    
     // add new book to the collection array
     collection.push(newBook);
     // update local storage
@@ -189,7 +154,6 @@ const app = () => {
   const removeBook = (index) => {
     collection.splice(index, 1)
     displayCollection();
-
   }
   // set collection in local storage
   function setData() {
@@ -221,7 +185,6 @@ const app = () => {
   loadCollection();
   displayCollection();
 }
-
 
 
 //modal support
