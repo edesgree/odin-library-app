@@ -30,7 +30,7 @@
             <p class="subtitle">
               A little app to track the books you have read!
             </p>
-            <button class="button is-link js-modal-trigger" data-target="modal-addbook">
+            <button type="button" class="button is-link js-modal-trigger" data-target="modal-addbook">
               <span class="icon is-large">
                 <i class="fab fa-plus"></i>
               </span>
@@ -48,7 +48,7 @@
       <form class="modal-card form" id="addBookForm">
         <header class="modal-card-head">
           <p class="modal-card-title">Modal title</p>
-          <button class="delete" aria-label="close"></button>
+          <button type="button" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
           <div class="field">
@@ -73,6 +73,11 @@
           <div class="field">
             <label class="label" >Have you read the book?</label>
             <div class="control">
+              <div class="field">
+                <input type="checkbox" name="toto" id="toto">
+                <input id="switchExample" type="checkbox" name="switchExample" class="switch" checked="checked">
+                <label for="switchExample">Switch example</label>
+              </div>
               <label class="radio">
                 <input type="radio" name="isread" value="true" required>
                 Yes
@@ -99,7 +104,7 @@
     <!--  -->
 
 
-    <div class="books"></div>
+    <div id="booksGrid" class="books"></div>
   </main>
   <footer class="footer">
     <div class="content has-text-centered">

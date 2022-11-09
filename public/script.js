@@ -1,7 +1,7 @@
 // app
 const app = () => {
   const iconsBook = document.querySelectorAll(".icon-book .icon-book-cover");
-  const books = document.querySelector(".books");
+  const booksGrid = document.getElementById("booksGrid");
   const addBookForm = document.getElementById('addBookForm');
   let collection = [];
   console.log(addBookForm)
@@ -11,13 +11,13 @@ const app = () => {
 
 
   class Book {
-    constructor(title, author, pages, read) {
+    constructor(title, author, pages, read, iconColor) {
       this.title = title;
       this.author = author;
       this.pages = pages;
       this.read = read;
       // random icon color for each book
-      this.iconColor = [rand(255), rand(255), rand(255)];
+      this.iconColor = iconColor;
       if (read == false) {
         this.read = "not read yet"
       } else {
@@ -28,10 +28,10 @@ const app = () => {
 
   // examples
   const DEFAULT_DATA = [
-    { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true,iconColor:[123,123,123] },
-    { title: 'Harry Poter', author: 'J.K Rowling', pages: 425, read: false,iconColor:[23,255,66] },
-    { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true,iconColor:[87,123,87] },
-    { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false,iconColor:[123,14,0] }
+    { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true, iconColor: [123, 123, 123] },
+    { title: 'Harry Poter', author: 'J.K Rowling', pages: 425, read: false, iconColor: [23, 255, 66] },
+    { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true, iconColor: [87, 123, 87] },
+    { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false, iconColor: [123, 14, 0] }
   ]
 
 
@@ -53,16 +53,9 @@ const app = () => {
 
   // display a book
   function displayBook(item) {
-   // let removeBtn = document.item.querySelector('.btn-delete');
-    console.log(item);
-    //console.log(removeBtn);
-    // removeBtn.addEventListener('click', () => {
-    //   collection.splice(collection.indexOf(item), 1);
-    //   setData()
-    //   displayCollection();
-    // }); 
-    const bookDiv = document.createElement('div');
-    const html= `
+     
+    const bookCard = document.createElement('div');
+    const html = `
                 <div class="card">
          
                 <div class="card-content">
@@ -121,39 +114,66 @@ const app = () => {
                   </div>
                 </footer>
               </div>`
-              const titleBook =  document.createElement('div');
-              titleBook.textContent = item.title;
-              bookDiv.appendChild(titleBook);
+    // const titleBook = document.createElement('p');
+    // titleBook.textContent = `"${item.title}"`;
+    // console.log(bookCard);
+    booksGrid.innerHTML = html;
+    //bookCard.appendChild(titleBook + "!");
+    // console.log("titlebook" + titleBook);
+    // let removeBtn = document.querySelector('.btn-delete');
+    // console.log('removeBtn', removeBtn)
+    // console.log(item);
+    // //console.log(removeBtn);
+    //  removeBtn.addEventListener('click', () => {
+    //   console.log('removeBtn');
+
+    //    removeBook(item);
+    //  }); 
+    return html
   }
   // display books
   function displayCollection() {
+    resetGrid();
     // save to local storage
     setData();
-    //console.log(storedBooks);
+    console.log('collection.length', collection.length);
     for (let i = 0; i < collection.length; i++) {
-      books.innerHTML += displayBook(collection[i]);
+      booksGrid.innerHTML += displayBook(collection[i]);
+      console.log(collection[i]);
     }
   }
+  function resetGrid() {
 
+    console.log('resetGrid' );
+    booksGrid.innerHTML = "";
+  }
 
   function rand(max) {
     return Math.floor(Math.random() * (max + 1));
   }
-
+function randomRGB(){
+  return [rand(255), rand(255), rand(255)]
+}
   function addBook() {
-    const isRead = document.querySelector('input[name="isread"]:checked').value;
-    const bookTitle = document.getElementById('bookTitle').value;
-    const bookAuthor = document.getElementById('bookAuthor').value;
-    const bookPages = document.getElementById('bookPages').value;
+    const inputIsRead = document.querySelector('input[name="isread"]:checked').value;
+    const inputBookTitle = document.getElementById('bookTitle').value;
+    const inputBookAuthor = document.getElementById('bookAuthor').value;
+    const inputBookPages = document.getElementById('bookPages').value;
+    const inputIconColor = randomRGB();
 
     // create a new book using the Book constructor
-    let newBook = new Book(bookTitle, bookAuthor, bookPages, isRead);
+    let newBook = new Book(inputBookTitle, inputBookAuthor, inputBookPages, inputIsRead,inputIconColor);
     // add new book to the collection array
     collection.push(newBook);
     // update local storage
     setData();
     // append the new book in the HTML book list
-    books.innerHTML += displayBook(newBook);
+    booksGrid.innerHTML += displayBook(newBook);
+  }
+  const removeBook = (index) => {
+    collection.splice(index, 1)
+    displayCollection();
+    
   }
   // set collection in local storage
   function setData() {
@@ -166,6 +186,7 @@ const app = () => {
     // if form is valid, we call add book
     if (checkForm()) {
       addBook();
+      addBookForm.reset();
     }
   })
   //check validity form
