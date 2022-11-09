@@ -72,16 +72,17 @@ const app = () => {
                     </div>
                   </div>
                   <div class="content">
-                    ${item.pages} pages<br>${item.read}.
+                    ${item.pages} pages.
                   </div>
                 </div>`;
     const bookCard = document.createElement('div');
     const bookCardFooter = document.createElement('footer');
     const removeBtn = document.createElement('button');
     const isReadDiv = document.createElement('div');
+    const index = collection.indexOf(item);
 
     bookCard.classList.add('card');
-    bookCard.setAttribute('id', `book-${collection.indexOf(item)}`);
+    bookCard.setAttribute('id', `book-${index}`);
     bookCardFooter.classList.add('card-footer');
     isReadDiv.classList.add('card-footer-isread');
 
@@ -90,8 +91,8 @@ const app = () => {
                             <i class="fa-solid fa-trash"></i>
                           </span>`;
     isReadDiv.innerHTML = `
-                          <input id="isread" type="checkbox" name="isread" class="switch is-rounded is-small"  ${item.read ? 'checked' : 'unchecked'}>
-                          <label for="isread">${item.read ? 'already read it' : 'not read yet'}</label>
+                          <input id="isread-${index}" type="checkbox" name="isread-${index}" class="switch is-rounded is-small"  ${item.read ? 'checked' : 'unchecked'}>
+                          <label for="isread-${index}">${item.read ? 'already read it' : 'not read yet'}</label>
                           `;
     bookCard.innerHTML = htmlCard;
     bookCard.appendChild(bookCardFooter);
@@ -111,6 +112,7 @@ const app = () => {
     readBtn.addEventListener('change', () => {
       item.read = !item.read;
       setData();
+      displayCollection()
     });
   }
 
@@ -134,16 +136,16 @@ const app = () => {
     return [rand(255), rand(255), rand(255)]
   }
   function addBook() {
-   
+
     const inputBookTitle = document.getElementById('bookTitle').value;
     const inputBookAuthor = document.getElementById('bookAuthor').value;
     const inputBookPages = document.getElementById('bookPages').value;
     const inputIsRead = document.querySelector('input[name="isread"]').checked;
     const inputIconColor = randomRGB();
-    
+
     // create a new book using the Book constructor
     let newBook = new Book(inputBookTitle, inputBookAuthor, inputBookPages, inputIsRead, inputIconColor);
-    
+
     // add new book to the collection array
     collection.push(newBook);
     // update local storage
