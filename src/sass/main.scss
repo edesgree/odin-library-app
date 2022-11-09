@@ -3,13 +3,23 @@ body {
     color: $grey-dark;
     font-family: $family-primary;
 }
-
+//header
+.hero-body{
+    .media-right{
+        @include mobile{
+            flex:1;
+        }
+    }
+}
 // card book
 .books {
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 20px 0;
+    @include mobile{
+        grid-template-columns: 1fr;
+    }
 }
 .card {
     display: flex;
@@ -32,26 +42,12 @@ body {
         justify-content: space-between;
         .card-footer-isread{
             padding-left: 5px;
-
-            .switch[type=checkbox] {
-                display: inline-block;
-                opacity: 1;
-                outline: 0;
-                position: relative;
-                user-select: none;
-            }
         }
     }
 }
-
-// form
-// input:invalid{
-//     border:solid 2px red;
-// }
-// input:valid{
-//     border:solid 2px green;
-// }
-
+.footer{
+    padding: 1rem 1.5rem;
+}
 // modal
 .modal-card{
     @include from(tablet){

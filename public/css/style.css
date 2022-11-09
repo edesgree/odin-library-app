@@ -21336,11 +21336,22 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+@media screen and (max-width: 768px) {
+  .hero-body .media-right {
+    flex: 1;
+  }
+}
+
 .books {
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 20px 0;
+}
+@media screen and (max-width: 768px) {
+  .books {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
@@ -21361,12 +21372,9 @@ body {
 .card .card-footer .card-footer-isread {
   padding-left: 5px;
 }
-.card .card-footer .card-footer-isread .switch[type=checkbox] {
-  display: inline-block;
-  opacity: 1;
-  outline: 0;
-  position: relative;
-  user-select: none;
+
+.footer {
+  padding: 1rem 1.5rem;
 }
 
 @media screen and (min-width: tablet) {
