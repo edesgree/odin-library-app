@@ -14,32 +14,35 @@
 
 <body>
 
-  <main class="container">
+  <main class="">
     <section class="hero is-small is-primary">
-      <div class="hero-body">
-        <div class="media">
-          <div class="media-left">
-            <p class="image is-96x96">
-              <img src="images/library.png" alt="">
-            </p>
+      <div class="container">
+        <div class="hero-body">
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-96x96">
+                <img src="images/library.png" alt="">
+              </p>
+            </div>
+            <div class="media-right">
+              <p class="title">
+                Library
+              </p>
+              <p class="subtitle">
+                A little app to track the books you have read!
+              </p>
+              <button type="button" class="button is-link js-modal-trigger" data-target="modal-addbook">
+                <span class="icon is-large">
+                  <i class="fab fa-plus"></i>
+                </span>
+                <span>Add a book</span>
+              </button>
+            </div>
           </div>
-          <div class="media-right">
-            <p class="title">
-              Library
-            </p>
-            <p class="subtitle">
-              A little app to track the books you have read!
-            </p>
-            <button type="button" class="button is-link js-modal-trigger" data-target="modal-addbook">
-              <span class="icon is-large">
-                <i class="fab fa-plus"></i>
-              </span>
-              <span>Add a book</span>
-            </button>
-          </div>
+  
         </div>
-
       </div>
+      
     </section>
 
     <!-- Modal -->
@@ -102,8 +105,10 @@
     </div>
     <!--  -->
 
-
-    <div id="booksGrid" class="books"></div>
+    <div class="container">
+      <div id="booksGrid" class="books"></div>
+    </div>
+    
   </main>
   <footer class="footer">
     <div class="content has-text-centered">

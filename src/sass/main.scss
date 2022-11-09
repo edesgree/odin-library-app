@@ -4,20 +4,24 @@ body {
     font-family: $family-primary;
 }
 //header
-.hero-body{
-    .media-right{
-        @include mobile{
-            flex:1;
+.hero {
+    flex-direction: row;
+    .hero-body {
+        .media-right {
+            @include mobile {
+                flex: 1;
+            }
         }
     }
 }
+
 // card book
 .books {
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 20px 0;
-    @include mobile{
+    @include mobile {
         grid-template-columns: 1fr;
     }
 }
@@ -26,6 +30,10 @@ body {
     flex-direction: column;
     justify-content: space-between;
     .card-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
         .image {
             .is-48X48 {
                 svg {
@@ -34,33 +42,33 @@ body {
                 }
             }
         }
-        .media-content{
+        .media-content {
             overflow: unset;
         }
     }
-    .card-footer{
+    .card-footer {
         justify-content: space-between;
-        .card-footer-isread{
+        .card-footer-isread {
             padding-left: 5px;
         }
     }
 }
-.footer{
+.footer {
     padding: 1rem 1.5rem;
 }
 // modal
-.modal-card{
-    @include from(tablet){
+.modal-card {
+    @include from(tablet) {
         width: 300px;
     }
-   
-    .modal-card-head{
+
+    .modal-card-head {
         background-color: $purple;
-        .modal-card-title{
-            color:$white;
-        } 
+        .modal-card-title {
+            color: $white;
+        }
     }
-    .modal-card-body{
+    .modal-card-body {
         background-color: $beige-lighter;
     }
 }

@@ -17,10 +17,10 @@ const app = () => {
 
   // examples
   const DEFAULT_DATA = [
-    { title: 'The Hobbit', author: 'J.R.R Tolkien', pages: 295, read: true, iconColor: [123, 123, 123] },
-    { title: 'Harry Potter', author: 'J.K Rowling', pages: 425, read: false, iconColor: [23, 255, 66] },
-    { title: '20000 lieues sous les mers', author: 'J. Verne', pages: 400, read: true, iconColor: [87, 123, 87] },
-    { title: 'l\'ile aux trésors', author: 'R. Stevenson', pages: 540, read: false, iconColor: [123, 14, 0] }
+    { title: 'The Hobbit', author: 'J.R.R. Tolkien', pages: 310, read: true, iconColor: [123, 123, 123] },
+    { title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', pages: 368, read: false, iconColor: [23, 255, 66] },
+    { title: 'Vingt Mille Lieues sous les mers', author: 'Jules Verne', pages: 606, read: true, iconColor: [87, 123, 87] },
+    { title: 'L\'ile aux trésors', author: 'Robert Louis Stevenson', pages: 262, read: false, iconColor: [123, 14, 0] }
   ]
 
 
@@ -72,7 +72,7 @@ const app = () => {
                     </div>
                   </div>
                   <div class="content">
-                    ${item.pages} pages.
+                    <small>${item.pages} pages</small>
                   </div>
                 </div>`;
     const bookCard = document.createElement('div');
@@ -178,7 +178,6 @@ const app = () => {
     // check is the form still has invalid fields
     if (invalid_fields.length == 0) {
       // form valid
-      console.log("form valid");
       return true;
     }
     return false;

@@ -21336,8 +21336,11 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+.hero {
+  flex-direction: row;
+}
 @media screen and (max-width: 768px) {
-  .hero-body .media-right {
+  .hero .hero-body .media-right {
     flex: 1;
   }
 }
@@ -21356,6 +21359,12 @@ body {
 
 .card {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card .card-content {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }
