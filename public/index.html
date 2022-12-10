@@ -1,119 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library app</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library app</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-  <main class="">
-    <section class="hero is-small is-primary">
-      <div class="container">
-        <div class="hero-body">
-          <div class="media">
-            <div class="media-left">
-              <p class="image is-96x96">
-                <img src="images/library.png" alt="">
-              </p>
-            </div>
-            <div class="media-right">
-              <p class="title">
-                Library
-              </p>
-              <p class="subtitle">
-                A little app to track the books you have read!
-              </p>
-              <button type="button" class="button is-link js-modal-trigger" data-target="modal-addbook">
-                <span class="icon is-large">
-                  <i class="fab fa-plus"></i>
-                </span>
-                <span>Add a book</span>
-              </button>
-            </div>
-          </div>
-  
-        </div>
-      </div>
-      
-    </section>
-
-    <!-- Modal -->
-    <div id="modal-addbook" class="modal">
-      <div class="modal-background"></div>
-      <form class="modal-card form" id="addBookForm">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Modal title</p>
-          <button type="button" class="delete" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-          <div class="field">
-            <label class="label" for="title">Title</label>
-            <div class="control">
-              <input class="input" id="bookTitle" name="title" type="text" placeholder="Book title" required>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label" for="author">Author</label>
-            <div class="control">
-              <input class="input" id="bookAuthor" name="author" type="text" placeholder="Book author" required>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label" for="pages">Pages</label>
-            <div class="control">
-              <input class="input" id="bookPages" name="pages" type="number" placeholder="Number of pages"
-                pattern="^[0-9]+$" required>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label" >Have you read the book?</label>
-            <div class="control">
-              <div class="field">
-                <input id="isread" type="checkbox" name="isread" class="switch is-rounded" checked>
-                <label for="isread">Read the book</label>
+  <body>
+    <main class="">
+      <section class="hero is-small is-primary">
+        <div class="container">
+          <div class="hero-body">
+            <div class="media">
+              <div class="media-left">
+                <p class="image is-96x96">
+                  <img src="images/library.png" alt="" />
+                </p>
+              </div>
+              <div class="media-right">
+                <p class="title">Library</p>
+                <p class="subtitle">
+                  A little app to track the books you have read!
+                </p>
+                <button
+                  type="button"
+                  class="button is-link js-modal-trigger"
+                  data-target="modal-addbook"
+                >
+                  <span class="icon is-large">
+                    <i class="fab fa-plus"></i>
+                  </span>
+                  <span>Add a book</span>
+                </button>
               </div>
             </div>
           </div>
-        </section>
-        <footer class="modal-card-foot">
-          <div class="field is-grouped">
-            <div class="control">
-              <button type="submit" data-close-modal class="button is-link">Add book</button>
-            </div>
-            <div class="control">
-              <button class="button is-link is-light" type="reset">Reset</button>
-            </div>
-          </div>
-        </footer>
-      </form>
-    </div>
-    <!--  -->
+        </div>
+      </section>
 
-    <div class="container">
-      <div id="booksGrid" class="books"></div>
-    </div>
-    
-  </main>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>© 2022 <a href="https://github.com/edesgree/" target="_blank">
-          <span class="icon-text">
-            <span class="icon">
-              <i class="fa-brands fa-github"></i>
-            </span>
-            <span>edesgree</span>
-          </span></a>
-      </p>
-    </div>
-  </footer>
-</body>
+      <!-- Modal -->
+      <div id="modal-addbook" class="modal">
+        <div class="modal-background"></div>
+        <form class="modal-card form" id="addBookForm">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Modal title</p>
+            <button type="button" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="field">
+              <label class="label" for="title">Title</label>
+              <div class="control">
+                <input
+                  class="input"
+                  id="bookTitle"
+                  name="title"
+                  type="text"
+                  placeholder="Book title"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="author">Author</label>
+              <div class="control">
+                <input
+                  class="input"
+                  id="bookAuthor"
+                  name="author"
+                  type="text"
+                  placeholder="Book author"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="pages">Pages</label>
+              <div class="control">
+                <input
+                  class="input"
+                  id="bookPages"
+                  name="pages"
+                  type="number"
+                  placeholder="Number of pages"
+                  pattern="^[0-9]+$"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Have you read the book?</label>
+              <div class="control">
+                <div class="field">
+                  <input
+                    id="isread"
+                    type="checkbox"
+                    name="isread"
+                    class="switch is-rounded"
+                    checked
+                  />
+                  <label for="isread">Read the book</label>
+                </div>
+              </div>
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <div class="field is-grouped">
+              <div class="control">
+                <button type="submit" class="button is-link">Add book</button>
+              </div>
+              <div class="control">
+                <button class="button is-link is-light" type="reset">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </footer>
+        </form>
+      </div>
+      <!--  -->
 
+      <div class="container">
+        <div id="booksGrid" class="books"></div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          © 2022
+          <a href="https://github.com/edesgree/" target="_blank">
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fa-brands fa-github"></i>
+              </span>
+              <span>edesgree</span>
+            </span></a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

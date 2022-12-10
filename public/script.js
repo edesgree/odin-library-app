@@ -1,7 +1,8 @@
 // app
 const app = () => {
-  const booksGrid = document.getElementById("booksGrid");
+  const booksGrid = document.getElementById('booksGrid');
   const addBookForm = document.getElementById('addBookForm');
+  const modalAddBook = document.getElementById('modal-addbook');
   let collection = [];
 
   class Book {
@@ -17,20 +18,42 @@ const app = () => {
 
   // examples
   const DEFAULT_DATA = [
-    { title: 'The Hobbit', author: 'J.R.R. Tolkien', pages: 310, read: true, iconColor: [123, 123, 123] },
-    { title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', pages: 368, read: false, iconColor: [23, 255, 66] },
-    { title: 'Vingt Mille Lieues sous les mers', author: 'Jules Verne', pages: 606, read: true, iconColor: [87, 123, 87] },
-    { title: 'L\'ile aux trésors', author: 'Robert Louis Stevenson', pages: 262, read: false, iconColor: [123, 14, 0] }
-  ]
-
-
+    {
+      title: 'The Hobbit',
+      author: 'J.R.R. Tolkien',
+      pages: 310,
+      read: true,
+      iconColor: [123, 123, 123]
+    },
+    {
+      title: "Harry Potter and the Philosopher's Stone",
+      author: 'J.K. Rowling',
+      pages: 368,
+      read: false,
+      iconColor: [23, 255, 66]
+    },
+    {
+      title: 'Vingt Mille Lieues sous les mers',
+      author: 'Jules Verne',
+      pages: 606,
+      read: true,
+      iconColor: [87, 123, 87]
+    },
+    {
+      title: "L'ile aux trésors",
+      author: 'Robert Louis Stevenson',
+      pages: 262,
+      read: false,
+      iconColor: [123, 14, 0]
+    }
+  ];
 
   // get books from local storage (display demo books if storage is empty)
   function loadCollection() {
     if (localStorage.getItem('books') === null) {
       collection = DEFAULT_DATA;
     } else {
-      const storedBooks = JSON.parse(localStorage.getItem("books"));
+      const storedBooks = JSON.parse(localStorage.getItem('books'));
       collection = storedBooks;
     }
   }
@@ -91,8 +114,12 @@ const app = () => {
                             <i class="fa-solid fa-trash"></i>
                           </span>`;
     isReadDiv.innerHTML = `
-                          <input id="isread-${index}" type="checkbox" name="isread-${index}" class="switch is-rounded is-small"  ${item.read ? 'checked' : 'unchecked'}>
-                          <label for="isread-${index}">${item.read ? 'already read it' : 'not read yet'}</label>
+                          <input id="isread-${index}" type="checkbox" name="isread-${index}" class="switch is-rounded is-small"  ${
+      item.read ? 'checked' : 'unchecked'
+    }>
+                          <label for="isread-${index}">${
+      item.read ? 'already read it' : 'not read yet'
+    }</label>
                           `;
     bookCard.innerHTML = htmlCard;
     bookCard.appendChild(bookCardFooter);
@@ -112,7 +139,7 @@ const app = () => {
     readBtn.addEventListener('change', () => {
       item.read = !item.read;
       setData();
-      displayCollection()
+      displayCollection();
     });
   }
 
@@ -126,17 +153,16 @@ const app = () => {
   }
 
   function resetGrid() {
-    booksGrid.innerHTML = "";
+    booksGrid.innerHTML = '';
   }
 
   function rand(max) {
     return Math.floor(Math.random() * (max + 1));
   }
   function randomRGB() {
-    return [rand(255), rand(255), rand(255)]
+    return [rand(255), rand(255), rand(255)];
   }
   function addBook() {
-
     const inputBookTitle = document.getElementById('bookTitle').value;
     const inputBookAuthor = document.getElementById('bookAuthor').value;
     const inputBookPages = document.getElementById('bookPages').value;
@@ -144,7 +170,13 @@ const app = () => {
     const inputIconColor = randomRGB();
 
     // create a new book using the Book constructor
-    let newBook = new Book(inputBookTitle, inputBookAuthor, inputBookPages, inputIsRead, inputIconColor);
+    let newBook = new Book(
+      inputBookTitle,
+      inputBookAuthor,
+      inputBookPages,
+      inputIsRead,
+      inputIconColor
+    );
 
     // add new book to the collection array
     collection.push(newBook);
@@ -154,12 +186,12 @@ const app = () => {
     displayBook(newBook);
   }
   const removeBook = (index) => {
-    collection.splice(index, 1)
+    collection.splice(index, 1);
     displayCollection();
-  }
+  };
   // set collection in local storage
   function setData() {
-    localStorage.setItem("books", JSON.stringify(collection));
+    localStorage.setItem('books', JSON.stringify(collection));
   }
   // form submit
   addBookForm.addEventListener('submit', (e) => {
@@ -168,16 +200,18 @@ const app = () => {
     // if form is valid, we call add book
     if (checkForm()) {
       addBook();
+      modalAddBook.classList.remove('is-active');
       addBookForm.reset();
     }
-  })
+  });
   //check validity form
   function checkForm() {
-
-    let invalid_fields = document.querySelectorAll("form :invalid");
+    let invalid_fields = document.querySelectorAll('form :invalid');
     // check is the form still has invalid fields
     if (invalid_fields.length == 0) {
       // form valid
+
+      console.log('form valid');
       return true;
     }
     return false;
@@ -185,8 +219,7 @@ const app = () => {
 
   loadCollection();
   displayCollection();
-}
-
+};
 
 //modal support
 document.addEventListener('DOMContentLoaded', () => {
@@ -216,7 +249,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('[data-close-modal],.modal-background, .modal-close, .modal-card-head .delete') || []).forEach(($close) => {
+  (
+    document.querySelectorAll(
+      '[data-close-modal],.modal-background, .modal-close, .modal-card-head .delete'
+    ) || []
+  ).forEach(($close) => {
     const $target = $close.closest('.modal');
 
     $close.addEventListener('click', () => {
@@ -228,7 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (event) => {
     const e = event || window.event;
 
-    if (e.keyCode === 27) { // Escape key
+    if (e.keyCode === 27) {
+      // Escape key
       closeAllModals();
     }
   });
